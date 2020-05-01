@@ -1,0 +1,12 @@
+{
+    "SourceS3BucketParameter" : "svas-lambda-packages-bucket",
+    "ImageProcessorSourceS3KeyParameter" : "src/lambda_imageprocessor.zip",
+    "FrameFetcherSourceS3KeyParameter" : "src/lambda_framefetcher.zip",
+    "S3ImageGetterSourceS3KeyParameter" : "src/lambda_s3imagegetter.zip",
+    "FrameS3BucketNameParameter" : "svas-frame-images-bucket",
+    "ImageReKogS3BucketNameParameter" : "svas-rekog-images-bucket",
+    "FrameFetcherApiResourcePathPart" : "enrichedframe",
+    "ApiGatewayRestApiNameParameter" : "VidAnalyzerRestApi",
+    "ApiGatewayStageNameParameter": "development",
+    "ApiGatewayUsagePlanNameParameter" : "development-plan"
+}
