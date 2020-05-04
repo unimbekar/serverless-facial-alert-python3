@@ -87,17 +87,23 @@ def process_image(event, context):
             MinConfidence=rekog_min_conf
         )
 
+        rekog_response = json.loads(
+            json.dumps(
+                rekog_response
+            ), parse_float=lambda x: str(round(float(x), 5))
+        )
+
         # Iterate on rekognition labels...
         for label in rekog_response['Labels']:
             lbl = label['Name']
-            conf = label['Confidence']
+            conf = decimal.Decimal(label['Confidence'])
             label['OnWatchList'] = False
 
             # Convert from float to decimal for DynamoDB
             label['Confidence'] = decimal.Decimal(conf)
 
             # Print labels and confidence to lambda console
-            print('{} .. conf %{:.2f}'.format(lbl, conf))
+            print('{} .. conf {}'.format(lbl, conf))
 
             # Check label watch list and trigger action
             if (label_watch_phone_num
@@ -175,8 +181,8 @@ def print_rekog_labels(rekog_response):
 def convert_to_decimal(rekog_response):
     print('In fn: convert_to_decimal')
     for label in rekog_response['Labels']:
+        print('Label: {}, Confidence: {}, Confidence(in Decimal): {},  str(Decimal Label Confidence): {}'.format(label['Name'], label['Confidence'], decimal.Decimal(label['Confidence']), decimal.Decimal(str(label['Confidence']))))
         label['Confidence'] = decimal.Decimal(label['Confidence'])
-        # print('Label: {}, Confidence: {}, Confidence(in Decimal): {}'.format(label['Name'], label['Confidence'], decimal.Decimal(label['Confidence'])))
 
 
 def person_of_interest_finder(rekog_client, img_bytes, config):

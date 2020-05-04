@@ -1,5 +1,5 @@
 {
-	"s3_bucket"                 : "svas-frame-images-bucket",
+	"s3_bucket"                 : "sfas-py36-frame-images-bucket",
 	"s3_key_frames_root"        : "frames/",
 	"kinesis-frames-stream"     : "FramesStream"
 }
