@@ -126,7 +126,7 @@ def process_image(event, context):
 
                     # Send SNS notification
                     # sns_client.publish(PhoneNumber=label_watch_phone_num, Message=notification_txt)
-                    sns_client.publish(TopicArn='arn:aws:sns:us-east-1:721045248511:video-frame-alert-topic',
+                    sns_client.publish(TopicArn='arn:aws:sns:us-east-1:141967547628:video-frame-alert-topic',
                                        Subject='Found Person {}'.format(person_found),
                                        Message=notification_txt,
                                        MessageAttributes={
